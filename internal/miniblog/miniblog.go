@@ -6,9 +6,13 @@
 package miniblog
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+
+	"github.com/wangyj641/miniblog/internal/pkg/log"
 )
 
 var cfgFile string
@@ -24,12 +28,16 @@ func NewMiniBlogCommand() *cobra.Command {
 		Long: `A good Go practical project, used to create user with basic information.
 
 Find more miniblog information at:
-	https://github.com/marmotedu/miniblog#readme`,
+	https://github.com/wangyj641/miniblog#readme`,
 
 		// 命令出错时，不打印帮助信息。不需要打印帮助信息，设置为 true 可以保持命令出错时一眼就能看到错误信息
 		SilenceUsage: true,
 		// 指定调用 cmd.Execute() 时，执行的 Run 函数，函数执行失败会返回错误信息
 		RunE: func(cmd *cobra.Command, args []string) error {
+			// 初始化日志
+			log.Init(logOptions())
+			defer log.Sync() // Sync 将缓存中的日志刷新到磁盘文件中
+
 			return run()
 		},
 		// 这里设置命令运行时，不需要指定命令行参数
@@ -60,6 +68,10 @@ Find more miniblog information at:
 
 // run 函数是实际的业务代码入口函数.
 func run() error {
-	fmt.Println("Hello MiniBlog!")
+	// 打印所有的配置项及其值
+	settings, _ := json.Marshal(viper.AllSettings())
+	log.Infow(string(settings))
+	// 打印 db -> username 配置项的值
+	log.Infow(viper.GetString("db.username"))
 	return nil
 }
