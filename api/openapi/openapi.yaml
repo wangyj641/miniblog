@@ -1,7 +1,7 @@
-# Copyright 2022 Innkeeper Belm(孔令飞) <nosbelm@qq.com>. All rights reserved.
+# Copyright 2024 Yongjun Wang <wangyj641@gmail.com>. All rights reserved.
 # Use of this source code is governed by a MIT style
 # license that can be found in the LICENSE file. The original repo for
-# this file is https://github.com/marmotedu/miniblog.
+# this file is https://github.com/wangyj641/miniblog.
 
 swagger: "2.0"
 servers:
@@ -12,9 +12,9 @@ info:
   title: miniblog api definition
   description: The API for the miniblog project
   contact:
-    name: Innkeeper Belm(孔令飞)
-    email: nosbelm@qq.com
-    url: https://github.com/colin404
+    name: Yongjun Wang
+    email: wangyj641@gmail.com
+    url: https://github.com/wangyj641
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT

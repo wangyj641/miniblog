@@ -1,10 +1,8 @@
-// Copyright 2022 Innkeeper Belm(孔令飞) <nosbelm@qq.com>. All rights reserved.
+// Copyright 2024 Yongjun Wang <wangyj641@gmail.com>. All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file. The original repo for
-// this file is https://github.com/marmotedu/miniblog.
+// this file is https://github.com/wangyj641/miniblog.
 
-// Package verflag defines utility functions to handle command line flags
-// related to version of IAM.
 package verflag
 
 import (
