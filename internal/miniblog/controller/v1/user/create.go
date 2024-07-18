@@ -9,10 +9,10 @@ import (
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 
-	"github.com/wang641/miniblog/internal/pkg/core"
-	"github.com/wang641/miniblog/internal/pkg/errno"
-	"github.com/wang641/miniblog/internal/pkg/log"
-	v1 "github.com/wang641/miniblog/pkg/api/miniblog/v1"
+	"github.com/wangyj641/miniblog/internal/pkg/core"
+	"github.com/wangyj641/miniblog/internal/pkg/errno"
+	"github.com/wangyj641/miniblog/internal/pkg/log"
+	v1 "github.com/wangyj641/miniblog/pkg/api/miniblog/v1"
 )
 
 // Create 创建一个新的用户.

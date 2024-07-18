@@ -6,8 +6,8 @@
 package user
 
 import (
-	"github.com/wang641/miniblog/internal/miniblog/biz"
-	"github.com/wang641/miniblog/internal/miniblog/store"
+	"github.com/wangyj641/miniblog/internal/miniblog/biz"
+	"github.com/wangyj641/miniblog/internal/miniblog/store"
 )
 
 // UserController 是 user 模块在 Controller 层的实现，用来处理用户模块的请求.
