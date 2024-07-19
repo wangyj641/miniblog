@@ -43,9 +43,9 @@
 	    _ "github.com/jinzhu/gorm/dialects/mysql"
 
 		// 内部包
-	    v1 "github.com/marmotedu/api/apiserver/v1"
-	    metav1 "github.com/marmotedu/apimachinery/pkg/meta/v1"
-	    "github.com/marmotedu/iam/pkg/cli/genericclioptions"
+	    v1 "github.com/wangyj641/api/apiserver/v1"
+	    metav1 "github.com/wangyj641/apimachinery/pkg/meta/v1"
+	    "github.com/wangyj641/iam/pkg/cli/genericclioptions"
 	)
 ```
 

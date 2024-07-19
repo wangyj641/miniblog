@@ -19,7 +19,7 @@ APIROOT=$(ROOT_DIR)/pkg/proto
 # 定义版本相关变量
 
 ## 指定应用使用的 version 包，会通过 `-ldflags -X` 向该包中指定的变量注入值
-VERSION_PACKAGE=github.com/marmotedu/wangyj641/pkg/version
+VERSION_PACKAGE=github.com/wangyj641/miniblog/pkg/version
 
 ## 定义 VERSION 语义化版本号
 ifeq ($(origin VERSION), undefined)
