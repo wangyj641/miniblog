@@ -19,8 +19,10 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/wangyj641/miniblog/internal/pkg/known"
 	"github.com/wangyj641/miniblog/internal/pkg/log"
 	mw "github.com/wangyj641/miniblog/internal/pkg/middleware"
+	"github.com/wangyj641/miniblog/pkg/token"
 	"github.com/wangyj641/miniblog/pkg/version/verflag"
 )
 
@@ -87,6 +89,9 @@ func run() error {
 	if err := initStore(); err != nil {
 		return err
 	}
+
+	// 设置 token 包的签发密钥，用于 token 包 token 的签发和解析
+	token.Init(viper.GetString("jwt-secret"), known.XUsernameKey)
 
 	// 设置 Gin 模式
 	gin.SetMode(viper.GetString("runmode"))
