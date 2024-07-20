@@ -15,6 +15,7 @@ import (
 
 	"github.com/wangyj641/miniblog/internal/miniblog/store"
 	"github.com/wangyj641/miniblog/internal/pkg/errno"
+	"github.com/wangyj641/miniblog/internal/pkg/log"
 	"github.com/wangyj641/miniblog/internal/pkg/model"
 	v1 "github.com/wangyj641/miniblog/pkg/api/miniblog/v1"
 	"github.com/wangyj641/miniblog/pkg/auth"
@@ -27,6 +28,9 @@ type UserBiz interface {
 	Login(ctx context.Context, r *v1.LoginRequest) (*v1.LoginResponse, error)
 	Create(ctx context.Context, r *v1.CreateUserRequest) error
 	Get(ctx context.Context, username string) (*v1.GetUserResponse, error)
+	List(ctx context.Context, offset, limit int) (*v1.ListUserResponse, error)
+	Update(ctx context.Context, username string, r *v1.UpdateUserRequest) error
+	Delete(ctx context.Context, username string) error
 }
 
 // UserBiz 接口的实现.
@@ -117,4 +121,65 @@ func (b *userBiz) Get(ctx context.Context, username string) (*v1.GetUserResponse
 	resp.UpdatedAt = user.UpdatedAt.Format("2006-01-02 15:04:05")
 
 	return &resp, nil
+}
+
+// List 是 UserBiz 接口中 `List` 方法的实现.
+func (b *userBiz) List(ctx context.Context, offset, limit int) (*v1.ListUserResponse, error) {
+	count, list, err := b.ds.Users().List(ctx, offset, limit)
+	if err != nil {
+		log.C(ctx).Errorw("Failed to list users from storage", "err", err)
+		return nil, err
+	}
+
+	users := make([]*v1.UserInfo, 0, len(list))
+	for _, item := range list {
+		user := item
+		users = append(users, &v1.UserInfo{
+			Username:  user.Username,
+			Nickname:  user.Nickname,
+			Email:     user.Email,
+			Phone:     user.Email,
+			CreatedAt: user.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt: user.UpdatedAt.Format("2006-01-02 15:04:05"),
+		})
+	}
+
+	log.C(ctx).Debugw("Get users from backend storage", "count", len(users))
+
+	return &v1.ListUserResponse{TotalCount: count, Users: users}, nil
+}
+
+// Update 是 UserBiz 接口中 `Update` 方法的实现.
+func (b *userBiz) Update(ctx context.Context, username string, user *v1.UpdateUserRequest) error {
+	userM, err := b.ds.Users().Get(ctx, username)
+	if err != nil {
+		return err
+	}
+
+	if user.Email != nil {
+		userM.Email = *user.Email
+	}
+
+	if user.Nickname != nil {
+		userM.Nickname = *user.Nickname
+	}
+
+	if user.Phone != nil {
+		userM.Phone = *user.Phone
+	}
+
+	if err := b.ds.Users().Update(ctx, userM); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Delete 是 UserBiz 接口中 `Delete` 方法的实现.
+func (b *userBiz) Delete(ctx context.Context, username string) error {
+	if err := b.ds.Users().Delete(ctx, username); err != nil {
+		return err
+	}
+
+	return nil
 }

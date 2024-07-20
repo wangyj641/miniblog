@@ -6,6 +6,8 @@
 package user
 
 import (
+	pb "github.com/wangyj641/miniblog/pkg/proto/miniblog/v1"
+
 	"github.com/wangyj641/miniblog/internal/miniblog/biz"
 	"github.com/wangyj641/miniblog/internal/miniblog/store"
 	"github.com/wangyj641/miniblog/pkg/auth"
@@ -15,6 +17,7 @@ import (
 type UserController struct {
 	a *auth.Authz
 	b biz.IBiz
+	pb.UnimplementedMiniBlogServer
 }
 
 // New 创建一个 user controller.
