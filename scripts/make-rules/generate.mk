@@ -28,6 +28,7 @@ gen.protoc: tools.verify.protoc-gen-go ## 编译 protobuf 文件.
 		--proto_path=$(ROOT_DIR)/third_party             \
 		--go_out=paths=source_relative:$(APIROOT)        \
 		--go-grpc_out=paths=source_relative:$(APIROOT)   \
+		--experimental_allow_proto3_optional \
 		$(shell find $(APIROOT) -name *.proto)
 
 .PHONY: gen.deps
