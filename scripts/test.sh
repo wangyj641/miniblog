@@ -40,7 +40,7 @@ mb::test::user()
 
   # 2. 创建 colin 用户
   ${CCURL} "${Header}" "${token}" http://${INSECURE_SERVER}/v1/users \
-    -d'{"username":"colin","password":"miniblog1234","nickname":"belm","email":"nosbelm@qq.com","phone":"1818888xxxx"}' > /dev/null
+   -d'{"username":"colin","password":"miniblog1234","nickname":"belm","email":"colin@gmail.com","phone":"1818888xxxx"}' > /dev/null
 
   # 3. 列出所有用户
   ${RCURL} "${token}" "http://${INSECURE_SERVER}/v1/users?offset=0&limit=10" > /dev/null
@@ -62,7 +62,7 @@ mb::test::post()
 
   # 1. 创建测试用户 posttest 用户
   ${CCURL} "${Header}" "${token}" http://${INSECURE_SERVER}/v1/users \
-    -d'{"username":"posttest","password":"miniblog1234","nickname":"belm","email":"nosbelm@qq.com","phone":"1818888xxxx"}' > /dev/null
+    -d'{"username":"posttest","password":"miniblog1234","nickname":"belm","email":"colin@gmail.com","phone":"1818888xxxx"}' > /dev/null
 
   # 2. posttest 登录 miniblog
   tokenStr=`${CCURL} "${Header}" http://${INSECURE_SERVER}/login -d'{"username":"posttest","password":"miniblog1234"}' | grep -Po 'token[" :]+\K[^"]+'`

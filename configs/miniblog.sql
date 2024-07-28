@@ -32,27 +32,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `miniblog` /*!40100 DEFAULT CHARACTER S
 USE `miniblog`;
 
 --
--- Table structure for table `casbin_rule`
---
-
-DROP TABLE IF EXISTS `casbin_rule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `casbin_rule` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `ptype` varchar(100) DEFAULT NULL,
-  `v0` varchar(100) DEFAULT NULL,
-  `v1` varchar(100) DEFAULT NULL,
-  `v2` varchar(100) DEFAULT NULL,
-  `v3` varchar(100) DEFAULT NULL,
-  `v4` varchar(100) DEFAULT NULL,
-  `v5` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_casbin_rule` (`ptype`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `post`
 --
 
