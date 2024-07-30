@@ -28,4 +28,9 @@ $ _output/platforms/linux/amd64/miniblog -c configs/miniblog.yaml
 $ ./scripts/test.sh
 ```
 
+- Performance test
+```bash
+$ ./scripts/wrktest.sh http://localhost:8080/v1/users        
+```
+
 
