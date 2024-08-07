@@ -9,10 +9,16 @@ A golang backend providing a simple blogging service
 - gin： A high-performance, open-source web framework
 - gorm： A simple, fast, and powerful ORM library
 - cobra： A fast and easy-to-use command line interface library
+- MySQL： A fast, open-source, and easy-to-use database library
+  
 
 
 ### Key features:
-- User registration and login
+- user management
+  - User registration and login
+  - get user info, update user info, delete user info, modify user password
+- blog management
+  - get all blogs, get blog by id, create blog, update blog, delete blog
 
 
 ### Usage
